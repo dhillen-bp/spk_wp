@@ -3,8 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ranking extends Model
 {
-    //
+    protected $fillable = [
+        'employee_id',
+        'net_flow_value',
+        'rank',
+    ];
+
+    /**
+     * Get the employee that owns the Ranking
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function employee(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class);
+    }
 }
