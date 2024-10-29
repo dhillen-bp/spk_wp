@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('preferences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('criteria_id')->constrained('criteria')->onDelete('cascade');
+            $table->foreignId('criteria_id')->constrained('criterias')->onDelete('cascade');
             $table->decimal('preference_value', 8, 2); // Nilai preferensi untuk kriteria ini
             $table->timestamps();
         });

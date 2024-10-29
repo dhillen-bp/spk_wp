@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('employee_scores', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
-            $table->foreignId('criteria_id')->constrained('criteria')->onDelete('cascade');
+            $table->foreignId('criteria_id')->constrained('criterias')->onDelete('cascade');
             $table->decimal('score', 8, 2); // Nilai karyawan pada kriteria ini
             $table->timestamps();
         });
