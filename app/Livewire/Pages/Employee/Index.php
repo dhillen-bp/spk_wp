@@ -10,6 +10,8 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
     public function destroy($id)
     {
         Employee::destroy($id);
@@ -18,13 +20,19 @@ class Index extends Component
         session()->flash('message', 'Employee successfully deleted.');
 
         // Redirect atau refresh
-        return redirect()->route('employee');
+        $this->redirect(route('employee'));
     }
 
 
     public function render()
     {
-        $employees = Employee::latest()->paginate(10);
+        $employees = Employee::query()
+            ->when($this->search, function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('position', 'like', '%' . $this->search . '%')
+                    ->orWhere('department', 'like', '%' . $this->search . '%');
+            })->latest()->paginate(10);
+
         return view('livewire.pages.employee.index', [
             'employees' => $employees,
         ])->layout('layouts.app');
