@@ -2,32 +2,21 @@
 
 namespace App\Livewire\Pages\Employee;
 
-use App\Models\Employee;
-use Livewire\Attributes\Validate;
+use App\Livewire\Forms\EmployeeForm;
+use App\Livewire\Forms\PostForm;
 use Livewire\Component;
 
 class Create extends Component
 {
-    #[Validate('required')]
-    public $name = '';
+    public EmployeeForm $form;
 
-    #[Validate('required')]
-    public $position = '';
-
-    #[Validate('required')]
-    public $department = '';
-
-    public function store()
+    public function save()
     {
-        $this->validate();
 
-        Employee::create(
-            $this->only(['name', 'position', 'department'])
-        );
+        $this->form->store();
 
-        session()->flash('status', 'Post successfully updated.');
-
-        return redirect()->route('employee');
+        // return $this->redirect(route('employee'));
+        return $this->redirect('/employee');
     }
 
     public function render()

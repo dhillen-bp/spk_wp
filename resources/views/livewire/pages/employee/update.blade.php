@@ -10,18 +10,17 @@
                     <a href="#">Data Employee</a>
                 </li>
                 <li class="breadcrumbs-separator rtl:-rotate-[40deg]">/</li>
-                <li aria-current="page">Create Employee</li>
+                <li aria-current="page">Update Employee</li>
             </ul>
         </div>
     </div>
-    <h3 class="text-lg">Create Employee</h3>
+    <h3 class="text-lg">Update Employee</h3>
     <form wire:submit="save">
         <label class="form-control mb-6 md:w-1/2">
             <div class="label">
                 <span class="label-text">Full Name</span>
             </div>
-            <input type="text" placeholder="John Doe"
-                class="@error('form.name')
+            <input type="text" class="@error('form.name')
              is-invalid
             @enderror input"
                 wire:model="form.name" />
