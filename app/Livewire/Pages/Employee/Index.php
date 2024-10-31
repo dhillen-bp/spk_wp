@@ -20,7 +20,7 @@ class Index extends Component
         session()->flash('message', 'Employee successfully deleted.');
 
         // Redirect atau refresh
-        $this->redirect(route('employee'));
+        $this->redirect(route('employee.index'));
     }
 
 

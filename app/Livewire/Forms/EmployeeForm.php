@@ -35,7 +35,7 @@ class EmployeeForm extends Form
             $this->all()
         );
 
-        session()->flash('status', 'Post successfully updated.');
+        session()->flash('status', 'Employee successfully added.');
 
         $this->reset();
     }

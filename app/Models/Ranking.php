@@ -9,7 +9,7 @@ class Ranking extends Model
 {
     protected $fillable = [
         'employee_id',
-        'net_flow_value',
+        'final_score',
         'rank',
     ];
 

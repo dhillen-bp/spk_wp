@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('criterias', function (Blueprint $table) {
             $table->id();
             $table->string('name'); // Nama kriteria
-            $table->enum('type', ['maximization', 'minimization']); // Tipe kriteria, misalnya maksimalisasi
+            $table->enum('type', ['benefit', 'cost']); // Tipe kriteria, misalnya maksimalisasi
             $table->decimal('weight', 5, 2); // Bobot kepentingan untuk kriteria ini
-            $table->string('preference_type')->nullable(); // Tipe preferensi PROMETHEE, jika dibutuhkan
             $table->timestamps();
         });
     }

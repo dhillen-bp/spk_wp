@@ -19,7 +19,7 @@ class Update extends Component
     {
         $this->form->update();
 
-        return $this->redirect(route('employee'));
+        return $this->redirect(route('employee.index'));
         // return $this->redirect('/employee');
     }
 

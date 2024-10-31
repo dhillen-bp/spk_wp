@@ -34,7 +34,8 @@ new class extends Component {
         <div id="dropdown-navbar-collapse"
             class="collapse hidden grow basis-full overflow-hidden transition-[height] duration-300 md:navbar-end max-md:w-full">
             <ul class="menu gap-2 p-0 text-base md:menu-horizontal">
-                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('dashboard') }}" wire:navigate>Dashboard</a></li>
+                <li><a href="{{ route('criteria.index') }}" wire:navigate>Criteria</a></li>
                 <li class="dropdown relative inline-flex [--auto-close:inside] [--offset:9] [--placement:bottom-end]">
                     <button id="dropdown-nav" type="button"
                         class="dropdown-toggle dropdown-open:bg-base-content/10 dropdown-open:text-base-content"
@@ -44,8 +45,10 @@ new class extends Component {
                     </button>
                     <ul class="dropdown-menu hidden dropdown-open:opacity-100" role="menu" aria-orientation="vertical"
                         aria-labelledby="dropdown-nav">
-                        <li><a class="dropdown-item" href="{{ route('employee') }}">Data Employe</a></li>
-                        <li><a class="dropdown-item" href="#">Employee Score</a></li>
+                        <li><a class="dropdown-item" href="{{ route('employee.index') }}" wire:navigate>Data Employe</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('employee_score.index') }}" wire:navigate>Employee
+                                Score</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Calculate</a></li>

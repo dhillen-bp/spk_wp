@@ -68,7 +68,6 @@
         <button type="submit" class="btn btn-primary block w-full md:w-1/2">
             Submit
         </button>
-        <div wire:loading.block>Saving data...</div>
 
     </form>
 </div>

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('rankings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
-            $table->decimal('net_flow_value', 8, 2); // Nilai net flow untuk karyawan
-            $table->integer('rank'); // Peringkat berdasarkan nilai net flow
+            $table->decimal('final_score', 8, 4);
+            $table->integer('rank');
             $table->timestamps();
         });
     }

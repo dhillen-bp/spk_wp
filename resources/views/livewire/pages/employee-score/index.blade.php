@@ -1,7 +1,8 @@
 <div class="mt-5 w-full overflow-x-auto">
     <div class="flex h-auto items-center justify-between gap-3">
-        <a href="{{ route('criteria.create') }}" wire:navigate class="btn btn-primary btn-sm md:btn md:btn-primary">Add
-            Criteria</a>
+        <a href="{{ route('employee_score.create') }}" wire:navigate
+            class="btn btn-primary btn-sm md:btn md:btn-primary">Add
+            Employee Score</a>
         <input wire:model.live.debounce.300ms="search" type="text" class="input h-full max-w-sm rounded-full"
             placeholder="search" aria-label="input" />
     </div>
@@ -11,8 +12,9 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
-                    <th>Weight</th>
-                    <th>Type</th>
+                    @foreach ($criterias as $criteria)
+                        <th>{{ $criteria->name }}</th>
+                    @endforeach
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -27,45 +29,49 @@
                     </td>
                 </tr>
 
-                @forelse ($criterias as $criteria)
+                @php
+                    $criteriaCount = $criterias->count(); // Asumsikan variabel $criterias berisi semua kriteria
+                @endphp
+
+                @forelse ($employees as $employee)
                     <tr>
-                        <td>{{ $loop->index + $criterias->firstItem() }}</td>
-                        <td class="text-nowrap">{{ $criteria->name }}</td>
-                        <td>{{ $criteria->weight }}</td>
-                        <td><span
-                                class="{{ $criteria->type == 'benefit' ? 'badge-success' : 'badge-error' }} badge badge-soft text-xs">{{ $criteria->type }}</span>
-                        </td>
+                        <td>{{ $loop->index + $employees->firstItem() }}</td>
+                        <td class="text-nowrap">{{ $employee->name }}</td>
+
+                        {{-- Iterasi sebanyak jumlah criteria --}}
+                        @for ($i = 0; $i < $criteriaCount; $i++)
+                            @php
+                                $score = $employee->scores->where('criteria_id', $criterias[$i]->id)->first();
+                            @endphp
+                            <td>{{ $score ? $score->score : '-' }}</td>
+                        @endfor
+
                         <td>
-                            <a href="{{ route('criteria.edit', $criteria) }}" wire:navigate
+                            <a href="{{ route('employee_score.edit', $employee) }}" wire:navigate
                                 class="btn btn-circle btn-text btn-sm" aria-label="Action button"><span
                                     class="icon-[tabler--pencil]"></span></a>
                             <button class="btn btn-circle btn-text btn-sm" aria-label="Action button"
                                 aria-haspopup="dialog" aria-expanded="false"
-                                aria-controls="modal-delete-{{ $criteria->id }}"
-                                data-overlay="#modal-delete-{{ $criteria->id }}"><span
+                                aria-controls="modal-delete-{{ $employee->id }}"
+                                data-overlay="#modal-delete-{{ $employee->id }}"><span
                                     class="icon-[tabler--trash]"></span></button>
-                            <x-modal-delete :dataId="$criteria->id" :dataDesc="$criteria->name" />
+                            <x-modal-delete :dataId="$employee->id" :dataDesc="$employee->name" />
                             <button class="btn btn-circle btn-text btn-sm" aria-label="Action button"><span
                                     class="icon-[tabler--dots-vertical]"></span></button>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center">No data found.</td>
+                        <td colspan="{{ 2 + $criteriaCount }}" class="text-center">No data found.</td>
                     </tr>
                 @endforelse
-            </tbody>
 
-            <tfoot>
-                <tr class="border-t border-base-content/25">
-                    <th colspan="2" class="border-r border-slate-500 border-opacity-50 text-end">Total Weight = </th>
-                    <th colspan="3"> {{ $totalWeight }}</th>
-                </tr>
-            </tfoot>
+
+            </tbody>
         </table>
     </div>
 
     <div class="mt-6">
-        {{ $criterias->links('components/custom-pagination-links-view') }}
+        {{ $employees->links('components/custom-pagination-links-view') }}
     </div>
 </div>

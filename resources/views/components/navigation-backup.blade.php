@@ -1,3 +1,5 @@
+{{-- BACKUP --}}
+
 <nav class="navbar flex w-full gap-2 rounded-box shadow max-md:flex-col md:items-center">
     <div class="flex items-center justify-between max-md:w-full">
         <div class="navbar-start items-center justify-between max-md:w-full">
@@ -27,7 +29,8 @@
                 </button>
                 <ul class="dropdown-menu hidden dropdown-open:opacity-100" role="menu" aria-orientation="vertical"
                     aria-labelledby="dropdown-nav">
-                    <li><a class="dropdown-item" href="{{ route('employee') }}">Data Employe</a></li>
+                    <li><a class="dropdown-item" href="{{ route('employee.index') }}" wire:navigate>Data Employe</a>
+                    </li>
                     <li><a class="dropdown-item" href="#">Employee Score</a></li>
                 </ul>
             </li>

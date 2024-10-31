@@ -15,8 +15,7 @@ class Create extends Component
 
         $this->form->store();
 
-        // return $this->redirect(route('employee'));
-        return $this->redirect('/employee');
+        return $this->redirect(route('employee.index'));
     }
 
     public function render()

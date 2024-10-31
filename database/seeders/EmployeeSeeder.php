@@ -24,10 +24,10 @@ class EmployeeSeeder extends Seeder
             Employee::create([
                 'name' => $faker->name,
                 'position' => $faker->randomElement([
-                    'Manager', 'Developer', 'Designer', 'Analyst', 'Sales', 'Product Owner'
+                    'Manager', 'Developer', 'Designer', 'Analyst', 'Sales', 'Product Owner', 'Customer Service Manager'
                 ]),
                 'department' => $faker->randomElement([
-                    'Finance', 'Information Technology', 'Marketing', 'Human Resource', 'Sales', 'Product Development'
+                    'Finance', 'Information Technology', 'Marketing', 'Human Resource', 'Sales', 'Product Development', 'Customer Service'
                 ]),
             ]);
         }

@@ -11,7 +11,6 @@ class Criteria extends Model
         'name',
         'type',
         'weight',
-        'preference_type',
     ];
 
     /**

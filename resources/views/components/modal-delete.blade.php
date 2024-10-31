@@ -3,7 +3,7 @@
     'dataDesc' => 'this data',
 ])
 
-<div id="modal-delete-{{ $dataId }}"
+<div id="modal-delete-{{ $dataId }}" wire:ignore
     class="overlay modal hidden [--overlay-backdrop:static] overlay-open:opacity-100" role="dialog" tabindex="-1"
     data-overlay-keyboard="false">
     <div
