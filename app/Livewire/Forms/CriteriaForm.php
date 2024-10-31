@@ -5,6 +5,7 @@ namespace App\Livewire\Forms;
 use App\Models\Criteria;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use Masmerise\Toaster\Toaster;
 
 class CriteriaForm extends Form
 {
@@ -35,7 +36,7 @@ class CriteriaForm extends Form
             $this->all()
         );
 
-        session()->flash('status', 'Criteria successfully added.');
+        Toaster::success('Criteria successfully created!');
     }
 
     public function update()
@@ -46,6 +47,7 @@ class CriteriaForm extends Form
             'weight' => $this->weight,
             'type' => $this->type,
         ]);
-        session()->flash('status', 'Criteria successfully updated.');
+
+        Toaster::success('Criteria successfully updated!');
     }
 }

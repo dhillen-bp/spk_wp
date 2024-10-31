@@ -63,12 +63,12 @@ new class extends Component {
                         aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                         <div class="avatar">
                             <div class="size-9.5 rounded-full">
-                                <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-1.png" alt="avatar 1" />
+                                <img src="{{ asset('images/default_user.jpeg') }}" alt="avatar 1" />
                             </div>
                         </div>
                     </button>
                     <div class="ml-3 flex flex-col md:hidden">
-                        <h6 class="text-base font-semibold text-base-content/90">John Doe</h6>
+                        <h6 class="text-base font-semibold text-base-content/90">{{ Auth::user()->name }}</h6>
                         <small class="text-base-content/50">Admin</small>
                     </div>
                     <ul class="min-w-60 dropdown-menu hidden md:dropdown-open:opacity-100" role="menu"
@@ -76,11 +76,11 @@ new class extends Component {
                         <li class="dropdown-header gap-2">
                             <div class="avatar">
                                 <div class="w-10 rounded-full">
-                                    <img src="https://cdn.flyonui.com/fy-assets/avatar/avatar-1.png" alt="avatar" />
+                                    <img src="{{ asset('images/default_user.jpeg') }}" alt="avatar" />
                                 </div>
                             </div>
                             <div>
-                                <h6 class="text-base font-semibold text-base-content/90">John Doe</h6>
+                                <h6 class="text-base font-semibold text-base-content/90">{{ Auth::user()->name }}</h6>
                                 <small class="text-base-content/50">Admin</small>
                             </div>
                         </li>

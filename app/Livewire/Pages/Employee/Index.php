@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Employee;
 use App\Models\Employee;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Masmerise\Toaster\Toaster;
 
 class Index extends Component
 {
@@ -17,7 +18,7 @@ class Index extends Component
         Employee::destroy($id);
 
         // Memberi pesan sukses
-        session()->flash('message', 'Employee successfully deleted.');
+        Toaster::success('Employee successfully deleted!');
 
         // Redirect atau refresh
         $this->redirect(route('employee.index'));

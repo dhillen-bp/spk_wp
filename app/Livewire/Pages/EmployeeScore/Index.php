@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\EmployeeScore;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Masmerise\Toaster\Toaster;
 
 class Index extends Component
 {
@@ -19,7 +20,7 @@ class Index extends Component
         // Menghapus semua nilai EmployeeScore berdasarkan employee_id
         EmployeeScore::where('employee_id', $employeeId)->delete();
 
-        session()->flash('message', 'Employee scores successfully deleted.');
+        Toaster::success('Employee Scores successfully deleted!');
 
         $this->redirect(route('employee_score.index'));
     }

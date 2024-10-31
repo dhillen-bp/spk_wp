@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Models\EmployeeScore;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use Masmerise\Toaster\Toaster;
 
 class EmployeeScoreForm extends Form
 {
@@ -30,8 +31,6 @@ class EmployeeScoreForm extends Form
             : [];
     }
 
-
-
     public function store()
     {
         $this->validate();
@@ -44,7 +43,7 @@ class EmployeeScoreForm extends Form
             ]);
         }
 
-        session()->flash('status', 'EmployeeScore successfully added.');
+        Toaster::success('Employee Scores successfully created!');
         $this->reset();
     }
 
@@ -64,6 +63,6 @@ class EmployeeScoreForm extends Form
             );
         }
 
-        session()->flash('status', 'EmployeeScore successfully updated.');
+        Toaster::success('Employee Scores successfully updated!');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Criteria;
 use App\Models\Criteria;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Masmerise\Toaster\Toaster;
 
 class Index extends Component
 {
@@ -19,7 +20,7 @@ class Index extends Component
         Criteria::destroy($id);
 
         // Memberi pesan sukses
-        session()->flash('message', 'Criteria successfully deleted.');
+        Toaster::success('Criteria successfully deleted!');
 
         // Redirect atau refresh
         $this->redirect(route('criteria.index'));

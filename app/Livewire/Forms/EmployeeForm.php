@@ -5,6 +5,7 @@ namespace App\Livewire\Forms;
 use App\Models\Employee;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use Masmerise\Toaster\Toaster;
 
 class EmployeeForm extends Form
 {
@@ -35,7 +36,7 @@ class EmployeeForm extends Form
             $this->all()
         );
 
-        session()->flash('status', 'Employee successfully added.');
+        Toaster::success('Employee successfully created!');
 
         $this->reset();
     }
@@ -48,6 +49,6 @@ class EmployeeForm extends Form
             'position' => $this->position,
             'department' => $this->department,
         ]);
-        session()->flash('status', 'Employee successfully updated.');
+        Toaster::success('Employee successfully updated!');
     }
 }
