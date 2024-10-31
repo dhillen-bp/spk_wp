@@ -19,7 +19,7 @@ Route::prefix('employee')->name('employee.')->middleware(['auth'])->group(functi
 Route::prefix('employee_score')->name('employee_score.')->middleware(['auth'])->group(function () {
     Route::get('/', App\Livewire\Pages\EmployeeScore\Index::class)->name('index');
     Route::get('/create', App\Livewire\Pages\EmployeeScore\Create::class)->name('create');
-    Route::get('/edit/{employee_score}', App\Livewire\Pages\EmployeeScore\Update::class)->name('edit');
+    Route::get('/edit/{employee}', App\Livewire\Pages\EmployeeScore\Update::class)->name('edit');
 });
 
 Route::prefix('criteria')->name('criteria.')->middleware(['auth'])->group(function () {

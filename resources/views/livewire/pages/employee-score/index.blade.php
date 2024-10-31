@@ -66,7 +66,6 @@
                     </tr>
                 @endforelse
 
-
             </tbody>
         </table>
     </div>
@@ -75,3 +74,9 @@
         {{ $employees->links('components/custom-pagination-links-view') }}
     </div>
 </div>
+
+<script>
+    document.addEventListener('livewire:navigated', () => {
+
+    });
+</script>

@@ -14,6 +14,7 @@ new class extends Component {
         $this->redirect('/', navigate: true);
     }
 }; ?>
+
 @persist('nav')
     <nav class="navbar flex w-full gap-2 rounded-box shadow max-md:flex-col md:items-center">
         <div class="flex items-center justify-between max-md:w-full">

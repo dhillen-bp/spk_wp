@@ -2,13 +2,14 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\Employee;
 use App\Models\EmployeeScore;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class EmployeeScoreForm extends Form
 {
-    public ?EmployeeScore  $employee;
+    public ?Employee $employee;
 
     #[Validate('required')]
     public $employee_id = '';
@@ -16,18 +17,20 @@ class EmployeeScoreForm extends Form
     #[Validate('required')]
     public $scores = [];
 
-    public function setEmployeeScore(EmployeeScore  $employee)
+    public function setEmployeeScore(Employee $employee)
     {
         $this->employee = $employee;
-        $this->employee_id = $employee->employee_id;
+        $this->employee_id = $employee->id;
 
-        $this->scores = $employee->criteria->map(function ($criteria) {
-            return [
-                'criteria_id' => $criteria->id,
-                'score' => $this->employee->score()->where('criteria_id', $criteria->id)->first()->score ?? 0,
-            ];
-        })->toArray();
+        // Cek dan set skor jika ada, jika tidak berikan default []
+        $this->scores = $employee->scores->isNotEmpty()
+            ? $employee->scores->mapWithKeys(function ($score) {
+                return [$score->criteria_id => $score->score];
+            })->toArray()
+            : [];
     }
+
+
 
     public function store()
     {
@@ -48,10 +51,19 @@ class EmployeeScoreForm extends Form
     public function update()
     {
         $this->validate();
-        $this->employee->update([
-            'employee_id' => $this->employee_id,
-            'score' => $this->scores,
-        ]);
-        session()->flash('status', 'EmployeeScore  successfully updated.');
+
+        foreach ($this->scores as $criteriaId => $score) {
+            EmployeeScore::updateOrCreate(
+                [
+                    'employee_id' => $this->employee_id,
+                    'criteria_id' => $criteriaId,
+                ],
+                [
+                    'score' => $score,
+                ]
+            );
+        }
+
+        session()->flash('status', 'EmployeeScore successfully updated.');
     }
 }
