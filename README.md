@@ -13,7 +13,13 @@
 - Perhitungan metode Weighted Product (WP)
 - Data hasil pemeringkatan
 
-## LANGKAH
+# TECH STACK
+- Laravel 11
+- Livewire 3
+- TailwindCSS & FlyonUI
+- MySQL
+
+## LANGKAH MENJALANKAN APLIKASI
 ### 1. Masuk ke folder directory project laravel
 ### 2. Install Dependensi Backend
 ```
