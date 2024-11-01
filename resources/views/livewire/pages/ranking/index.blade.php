@@ -33,8 +33,10 @@
                         <td>{{ $rank->final_score }}</td>
                         <td>
                             <div class="tooltip">
-                                <button class="tooltip-toggle btn btn-circle btn-text btn-sm"
-                                    aria-label="Detail button"><span
+                                <button class="tooltip-toggle btn btn-circle btn-text btn-sm" aria-label="Detail button"
+                                    aria-haspopup="dialog" aria-expanded="false"
+                                    aria-controls="modal-detail-{{ $rank->id }}"
+                                    data-overlay="#modal-detail-{{ $rank->id }}"><span
                                         class="icon-[tabler--dots-vertical]"></span></button>
                                 <span class="tooltip-content tooltip-shown:visible tooltip-shown:opacity-100"
                                     role="tooltip">
@@ -42,6 +44,7 @@
                                 </span>
                             </div>
                         </td>
+                        <x-modal-detail :data="$rank" />
                     </tr>
                 @empty
                     <tr>

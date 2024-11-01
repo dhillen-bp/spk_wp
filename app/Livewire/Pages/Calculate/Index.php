@@ -28,13 +28,22 @@ class Index extends Component
                 // Dapatkan skor karyawan untuk kriteria ini
                 $score = $employee->scores->where('criteria_id', $criteria->id)->first();
 
-                // Jika skor ada, hitung nilai normalisasi dengan pangkat bobot
+                // Jika skor ada, hitung nilai normalisasi
                 if ($score) {
                     $exponent = $criteria->weight / 100;
-                    $sValue *= pow($score->score, $exponent);
+
+                    if ($criteria->type === 'benefit') {
+                        // Untuk tipe benefit, gunakan skor langsung
+                        $sValue *= pow($score->score, $exponent);
+                    } elseif ($criteria->type === 'cost') {
+                        // Untuk tipe cost, gunakan 1/skor
+                        $sValue *= pow(1 / $score->score, $exponent);
+                    }
 
                     // Simpan hasil normalisasi (jika ingin ditampilkan di tabel normalisasi)
-                    $this->normalizedScores[$employee->id][$criteria->id] = pow($score->score, $exponent);
+                    $this->normalizedScores[$employee->id][$criteria->id] = ($criteria->type === 'benefit')
+                        ? pow($score->score, $exponent)
+                        : pow(1 / $score->score, $exponent);
                 }
             }
 

@@ -14,7 +14,7 @@ class Index extends Component
 
     public function render()
     {
-        $rankings = Ranking::with('employee')
+        $rankings = Ranking::with('employee.scores.criteria')
             ->where(function ($query) {
                 $query->where('final_score', 'like', '%' . $this->search . '%')
                     ->orWhereHas('employee', function ($q) {
