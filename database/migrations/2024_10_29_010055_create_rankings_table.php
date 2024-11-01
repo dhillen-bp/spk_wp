@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rankings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onDelete('cascade');
-            $table->decimal('final_score', 8, 4);
+            $table->decimal('final_score', 8, 5);
             $table->integer('rank');
             $table->timestamps();
         });

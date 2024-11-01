@@ -28,6 +28,12 @@ Route::prefix('criteria')->name('criteria.')->middleware(['auth'])->group(functi
     Route::get('/edit/{criteria}', App\Livewire\Pages\Criteria\Update::class)->name('edit');
 });
 
+Route::prefix('calculate')->name('calculate.')->middleware(['auth'])->group(function () {
+    Route::get('/', App\Livewire\Pages\Calculate\Index::class)->name('index');
+});
+Route::prefix('ranking')->name('ranking.')->middleware(['auth'])->group(function () {
+    Route::get('/', App\Livewire\Pages\Ranking\Index::class)->name('index');
+});
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

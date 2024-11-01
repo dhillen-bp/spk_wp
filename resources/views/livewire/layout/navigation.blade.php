@@ -23,7 +23,7 @@ new class extends Component {
                     FlyonUI
                 </a>
                 <div class="md:hidden">
-                    <button type="button" class="collapse-toggle btn btn-square btn-secondary btn-outline btn-sm"
+                    <button type="button" class="btn btn-square btn-secondary btn-outline collapse-toggle btn-sm"
                         data-collapse="#dropdown-navbar-collapse" aria-controls="dropdown-navbar-collapse"
                         aria-label="Toggle navigation">
                         <span class="size-4 icon-[tabler--menu-2] collapse-open:hidden"></span>
@@ -52,8 +52,8 @@ new class extends Component {
                                 Score</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Calculate</a></li>
-                <li><a href="#">Ranking</a></li>
+                <li><a href="{{ route('calculate.index') }}">Calculate</a></li>
+                <li><a href="{{ route('ranking.index') }}">Ranking</a></li>
                 <li><button wire:click="logout" class="bg-red-400 text-slate-200 hover:bg-red-500 md:hidden">Sign
                         Out</button>
                 </li>

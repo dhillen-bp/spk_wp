@@ -32,7 +32,7 @@
                         <td>{{ $loop->index + $employees->firstItem() }}</td>
                         <td class="text-nowrap">{{ $employee->name }}</td>
                         <td>{{ $employee->position }}</td>
-                        <td><span class="badge badge-success badge-soft text-xs">{{ $employee->department }}</span></td>
+                        <td><span class="badge badge-primary text-xs">{{ $employee->department }}</span></td>
                         <td>
                             <a href="{{ route('employee.edit', $employee) }}" wire:navigate
                                 class="btn btn-circle btn-text btn-sm" aria-label="Action button"><span

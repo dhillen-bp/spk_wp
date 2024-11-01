@@ -16,10 +16,6 @@ class EmployeeSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        $position = [];
-
-        $department = [];
-
         for ($i = 0; $i < 50; $i++) {
             Employee::create([
                 'name' => $faker->name,
