@@ -1,5 +1,5 @@
 <div class="accordion-shadow accordion space-y-5" data-accordion-always-open="true">
-    <div class="accordion-item active bg-base-200" id="criteria">
+    <div class="active accordion-item bg-base-200" id="criteria">
         <button class="accordion-toggle inline-flex items-center gap-x-4 px-5 py-4 text-start"
             aria-controls="criteria-collapse" aria-expanded="true">
             <span
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <div class="accordion-item active bg-base-200" id="alternative-value">
+    <div class="active accordion-item bg-base-200" id="alternative-value">
         <button class="accordion-toggle inline-flex items-center gap-x-4 px-5 py-4 text-start"
             aria-controls="alternative-value-collapse" aria-expanded="true">
             <span
@@ -76,11 +76,22 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <button wire:click="toggleShow" class="btn btn-primary mt-4">
+                    {{ $showAll ? 'Show Less' : 'Show All' }}
+                </button>
+
+                {{-- Tambahkan paginasi jika diperlukan --}}
+                @if ($showAll && $employees->hasMorePages())
+                    <div class="mt-4">
+                        {{ $employees->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
 
-    <div class="accordion-item active bg-base-200" id="normalization">
+    <div class="active accordion-item bg-base-200" id="normalization">
         <button class="accordion-toggle inline-flex items-center gap-x-4 px-5 py-4 text-start"
             aria-controls="normalization-collapse" aria-expanded="true">
             <span
@@ -116,21 +127,23 @@
                             </tr>
                         @endforeach
                     </tbody>
-
-
                 </table>
+
+                <button wire:click="toggleShow" class="btn btn-primary mt-4">
+                    {{ $showAll ? 'Show Less' : 'Show All' }}
+                </button>
             </div>
         </div>
     </div>
 
-    <div class="accordion-item active bg-base-200" id="ranking">
+    <div class="active accordion-item bg-base-200" id="ranking">
         <button class="accordion-toggle inline-flex items-center gap-x-4 px-5 py-4 text-start"
             aria-controls="ranking-collapse" aria-expanded="true">
             <span
                 class="size-4.5 icon-[tabler--plus] block shrink-0 text-base-content accordion-item-active:hidden"></span>
             <span
                 class="size-4.5 icon-[tabler--minus] hidden shrink-0 text-base-content accordion-item-active:block"></span>
-            Ranking
+            Result
         </button>
         <div id="ranking-collapse" class="accordion-content w-full overflow-hidden transition-[height] duration-300"
             aria-labelledby="ranking" role="region">
@@ -155,6 +168,10 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <button wire:click="toggleShow" class="btn btn-primary mt-4">
+                    {{ $showAll ? 'Show Less' : 'Show All' }}
+                </button>
             </div>
         </div>
     </div>

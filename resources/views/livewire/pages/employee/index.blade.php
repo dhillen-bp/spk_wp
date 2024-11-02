@@ -43,8 +43,6 @@
                                 data-overlay="#modal-delete-{{ $employee->id }}"><span
                                     class="icon-[tabler--trash]"></span></button>
                             <x-modal-delete :dataId="$employee->id" :dataDesc="$employee->name" />
-                            <button class="btn btn-circle btn-text btn-sm" aria-label="Action button"><span
-                                    class="icon-[tabler--dots-vertical]"></span></button>
                         </td>
                     </tr>
                 @empty

@@ -28,6 +28,14 @@ class Dashboard extends Component
 
     public function render()
     {
-        return view('livewire.pages.dashboard')->layout('layouts.app');
+        $bestRankings = Ranking::with('employee.scores.criteria')
+            ->orderBy('final_score', 'desc')
+            ->paginate(10);
+
+        $worstRankings = Ranking::with('employee.scores.criteria')
+            ->orderBy('final_score', 'asc')
+            ->paginate(10);
+
+        return view('livewire.pages.dashboard', compact('worstRankings', 'bestRankings'))->layout('layouts.app');
     }
 }

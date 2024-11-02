@@ -6,10 +6,16 @@ use App\Models\Criteria;
 use App\Models\Employee;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 use Masmerise\Toaster\Toaster;
 
 class Index extends Component
 {
+    use WithPagination;
+
+    public $perPage = 10; // Jumlah data yang ditampilkan per halaman
+    public $showAll = false; // Flag untuk menampilkan semua data
+
     public $vectorS = [];
     public $vectorV = [];
     public $normalizedScores = [];
@@ -83,11 +89,18 @@ class Index extends Component
         return $this->redirect(route('criteria.index'));
     }
 
+    public function toggleShow()
+    {
+        $this->showAll = !$this->showAll; // Toggle nilai flag
+    }
+
     public function render()
     {
         $this->calculateNormalization();
         $criterias = Criteria::all();
-        $employees = $employees = Employee::with(['scores.criteria'])->get();
+        $employees = $this->showAll ?
+            Employee::with('scores.criteria')->paginate($this->perPage * 10) : // Tampilkan semua jika showAll true
+            Employee::with('scores.criteria')->paginate($this->perPage); // Tampilkan 10 data
 
         return view('livewire.pages.calculate.index', [
             'criterias' => $criterias,

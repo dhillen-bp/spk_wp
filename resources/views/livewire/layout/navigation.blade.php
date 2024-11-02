@@ -68,7 +68,8 @@ new class extends Component {
                         </div>
                     </button>
                     <div class="ml-3 flex flex-col md:hidden">
-                        <h6 class="text-base font-semibold text-base-content/90">{{ Auth::user()->name }}</h6>
+                        <a href="{{ route('profile') }}" wire:navigate
+                            class="text-base text-base-content/90 hover:font-bold hover:text-slate-50">{{ Auth::user()->name }}</a>
                         <small class="text-base-content/50">Admin</small>
                     </div>
                     <ul class="min-w-60 dropdown-menu hidden md:dropdown-open:opacity-100" role="menu"
