@@ -23,7 +23,7 @@ new class extends Component {
                     FlyonUI
                 </a>
                 <div class="md:hidden">
-                    <button type="button" class="btn btn-square btn-secondary btn-outline collapse-toggle btn-sm"
+                    <button type="button" class="collapse-toggle btn btn-square btn-secondary btn-outline btn-sm"
                         data-collapse="#dropdown-navbar-collapse" aria-controls="dropdown-navbar-collapse"
                         aria-label="Toggle navigation">
                         <span class="size-4 icon-[tabler--menu-2] collapse-open:hidden"></span>
@@ -52,8 +52,8 @@ new class extends Component {
                                 Score</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('calculate.index') }}">Calculate</a></li>
-                <li><a href="{{ route('ranking.index') }}">Ranking</a></li>
+                <li><a href="{{ route('calculate.index') }}" wire:navigate>Calculate</a></li>
+                <li><a href="{{ route('ranking.index') }}" wire:navigate>Ranking</a></li>
                 <li><button wire:click="logout" class="bg-red-400 text-slate-200 hover:bg-red-500 md:hidden">Sign
                         Out</button>
                 </li>
@@ -85,10 +85,10 @@ new class extends Component {
                             </div>
                         </li>
                         <li>
-                            <button class="dropdown-item" wire:navigate>
+                            <a href="{{ route('profile') }}" class="dropdown-item" wire:navigate>
                                 <span class="icon-[tabler--user]"></span>
                                 My Profile
-                            </button>
+                            </a>
                         </li>
                         <li class="dropdown-footer gap-2">
                             <button class="btn btn-error btn-soft btn-block" wire:click="logout">

@@ -35,7 +35,7 @@ Route::prefix('ranking')->name('ranking.')->middleware(['auth'])->group(function
     Route::get('/', App\Livewire\Pages\Ranking\Index::class)->name('index');
 });
 
-Route::view('profile', 'profile')
+Route::get('/profile', App\Livewire\Pages\Profile::class)
     ->middleware(['auth'])
     ->name('profile');
 
